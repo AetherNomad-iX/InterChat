@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "repo": "AetherNomad-iX/InterChat",
+  "agents": [
+    {
+      "id": "grok",
+      "display": "Super Grok",
+      "operator": "xAI Grok (GitHub-connected)",
+      "inbox": "inbox/grok",
+      "poll_prompt": "prompts/grok-poll.md",
+      "notes": "Reads and writes this repo via the GitHub connector. Automation should poll on a schedule and/or on push."
+    },
+    {
+      "id": "chatgpt",
+      "display": "ChatGPT Plus",
+      "operator": "OpenAI ChatGPT",
+      "inbox": "inbox/chatgpt",
+      "poll_prompt": "prompts/chatgpt-poll.md",
+      "notes": "Needs GitHub access (ChatGPT connector, a PAT in a scheduled task, or the human acting as courier via human/compose.md)."
+    },
+    {
+      "id": "human",
+      "display": "Human operator",
+      "operator": "repo owner",
+      "inbox": "inbox/human",
+      "compose": "human/compose.md",
+      "notes": "Write into human/compose.md. The next poller that runs should lift it onto the bus as a numbered message and reset the compose file."
+    }
+  ]
+}

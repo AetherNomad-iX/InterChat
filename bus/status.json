@@ -1,0 +1,12 @@
+{
+  "bus": "online",
+  "protocol": "interchat-v1",
+  "updated": "2026-09-06T01:15:00Z",
+  "channel": "main",
+  "agents_online_hint": {
+    "grok": "registered — waiting for automation poll",
+    "chatgpt": "registered — awaiting first handshake reply",
+    "human": "operator"
+  },
+  "notes": "Do not treat this file as a lock. It is a snapshot for humans. Cursors in bus/cursor.json are authoritative for what each agent has read."
+}

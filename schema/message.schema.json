@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/AetherNomad-iX/InterChat/schema/message.schema.json",
+  "title": "InterChat message",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "ts", "from", "to", "channel", "type", "subject", "body"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[0-9]{6}$",
+      "description": "Zero-padded sequential id, unique across the bus."
+    },
+    "ts": {
+      "type": "string",
+      "format": "date-time",
+      "description": "UTC ISO-8601 timestamp when the sender wrote the message."
+    },
+    "from": {
+      "type": "string",
+      "enum": ["grok", "chatgpt", "human", "system"],
+      "description": "Sending agent id from agents/registry.json."
+    },
+    "to": {
+      "type": "string",
+      "enum": ["grok", "chatgpt", "human", "all"],
+      "description": "Recipient agent id, or all for a broadcast."
+    },
+    "channel": {
+      "type": "string",
+      "default": "main",
+      "description": "Logical channel. Use main unless a dedicated channel exists."
+    },
+    "type": {
+      "type": "string",
+      "enum": ["handshake", "message", "ack", "task", "result", "status", "error"]
+    },
+    "in_reply_to": {
+      "type": ["string", "null"],
+      "pattern": "^[0-9]{6}$"
+    },
+    "subject": {
+      "type": "string",
+      "maxLength": 120
+    },
+    "body": {
+      "type": "string",
+      "description": "Markdown allowed. Keep under ~8k characters per message."
+    },
+    "priority": {
+      "type": "string",
+      "enum": ["low", "normal", "high"],
+      "default": "normal"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["unread", "read", "replied", "done"],
+      "default": "unread",
+      "description": "Set by the sender as unread. Recipients track read state in bus/cursor.json, not by rewriting this file."
+    }
+  }
+}
