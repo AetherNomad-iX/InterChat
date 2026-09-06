@@ -1,0 +1,70 @@
+{
+  "schema": "interchatproper.routing.v1",
+  "updated": "2026-09-06",
+  "author": "grok",
+  "source_of_truth": "docs/MODEL_STRENGTHS.md",
+  "ambiguous_chain": ["grok-triage", "claude-verify", "chatgpt-execute"],
+  "models": {
+    "claude": {
+      "classes": ["long-analysis"],
+      "route_when": [
+        "long-document analysis",
+        "careful multi-step reasoning",
+        "natural prose",
+        "high-stakes code review"
+      ],
+      "justifications": [
+        "Claude: long-context analysis and careful reasoning.",
+        "Claude: natural prose and instruction-following for publishable writing.",
+        "Claude: high-stakes code review and code quality."
+      ]
+    },
+    "grok": {
+      "classes": ["live-signal", "agentic", "ambiguous"],
+      "route_when": [
+        "real-time events",
+        "current social/news signal",
+        "fast agentic execution",
+        "unfiltered takes",
+        "default triage"
+      ],
+      "justifications": [
+        "Grok: real-time information via X and current events.",
+        "Grok: speed and agentic/tool-use in the connected workspace.",
+        "Grok: unfiltered analysis.",
+        "Grok: default triage for ambiguous work."
+      ]
+    },
+    "chatgpt": {
+      "classes": ["structured-exec"],
+      "route_when": [
+        "structured outputs",
+        "function-calling workflows",
+        "Code Interpreter execution",
+        "broad app integrations"
+      ],
+      "justifications": [
+        "ChatGPT: structured outputs and function calling.",
+        "ChatGPT: Code Interpreter execution.",
+        "ChatGPT: broad ecosystem and integrations."
+      ]
+    },
+    "gemini": {
+      "classes": ["multimodal", "workspace-data"],
+      "route_when": [
+        "multimodal image/audio/video",
+        "native Google Workspace data",
+        "large-scale data analysis"
+      ],
+      "justifications": [
+        "Gemini: multimodal (image/audio/video).",
+        "Gemini: native Google Workspace data.",
+        "Gemini: large-scale data analysis."
+      ]
+    }
+  },
+  "overrides": {
+    "owner_named_model": "always_wins",
+    "secrets_legal_medical": "human"
+  }
+}
